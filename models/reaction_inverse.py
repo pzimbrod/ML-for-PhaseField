@@ -1,3 +1,4 @@
+"""Upstream: https://raw.githubusercontent.com/lululxvi/deepxde/master/examples/reaction_inverse.py"""
 """Backend supported: tensorflow.compat.v1, tensorflow, pytorch"""
 import deepxde as dde
 import numpy as np
