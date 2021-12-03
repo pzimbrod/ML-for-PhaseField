@@ -290,7 +290,6 @@ Stability of the solutions:
 stabile (meta stabile)
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
 \begin_inset Formula $\phi_{2}=1$
 \end_inset
@@ -325,7 +324,6 @@ meta stabile (stabile)
 )
 \end_layout
 
-\end_deeper
 \begin_layout Subsection
 Phase-field profile function
 \end_layout
