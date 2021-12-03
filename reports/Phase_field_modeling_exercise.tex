@@ -1,0 +1,172 @@
+%% LyX 2.3.6.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[12pt,a4paper,fleqn,american,parskip=half-,svgnames]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+\pdfpageheight\paperheight
+\pdfpagewidth\paperwidth
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\newcommand{\velo}{\upsilon}
+\newcommand{\cheat}{C}
+
+
+\usepackage{lastpage}
+\usepackage{textgreek}
+\usepackage{fixltx2e}
+\usepackage{hyperref} %ermöglicht \href{}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{microtype}
+\usepackage[nomessages]{fp}
+\usepackage{pdfpages}
+
+%colors
+\definecolor{link_color}{HTML}{00406E} % dark blue
+\definecolor{cite_color}{HTML}{590000} % dark red
+\definecolor{dark-violet}{HTML}{9400d3} 
+\definecolor{forest-green}{HTML}{228b22} 
+\definecolor{dark-red}{HTML}{8b0000} 
+\definecolor{dark-blue}{HTML}{00008b} 
+\definecolor{dark-pink}{HTML}{ff1493}
+\definecolor{dark-salmon}{HTML}{e9967a}
+\definecolor{midnight-blue}{HTML}{191970}
+
+\hypersetup{hidelinks = true}
+\hypersetup{
+    colorlinks   = true, %Colours links instead of ugly boxes
+    urlcolor     = link_color, %Colour for external hyperlinks
+    linkcolor    = black, %Colour of internal links
+    frenchlinks  = true, %small caps
+    citecolor    = cite_color %Colour of citations
+}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+
+\section{Phase field modeling}
+
+Given is the following energy functional 
+\begin{align*}
+F\left[\phi(x,y,t)\right] & =\int_{-\infty}^{\infty}\underbrace{\left(\frac{U}{2}\left[a^{2}\left((\partial_{x}\phi)^{2}+(\partial_{y}\phi)^{2}\right)+g(\phi)\right]+\mu_{0}h(\phi)\right)}_{f(\phi,\partial_{x}\phi,\partial_{y}\phi)}dx,
+\end{align*}
+where $a$ and $U$ are constants of the dimension length and energy
+respectively. $f(\phi,\partial_{x}\phi,\partial_{y}\phi)$\footnote{$\partial_{x}$ is an abbreviation for the partial derivative with
+respect to $x$, i.e.~$\partial_{x}\equiv\partial/\partial x$} denotes the local free energy density and $\mu$ the bulk free energy
+density difference between the two phases. Depending on the sign of
+$\mu$, this can either favor the growth of the one or the other phase.
+$g(\phi)=\phi^{2}(1-\phi)^{2}$ is the double well potential and $h(\phi)=\phi^{2}(3-2\phi)$
+is the interpolation function. Please note, that for the reason of
+phase-stability we have to demand $|\mu|<U/6$.  
+
+Variational principles provide the phase field equation
+\begin{align}
+\frac{1}{M_{\phi}}\frac{\partial\phi}{\partial t} & =-\frac{\delta F}{\delta\phi}\nonumber \\
+ & =\partial_{x}\frac{\partial f}{\partial\left(\partial_{x}\phi\right)}+\partial_{y}\frac{\partial f}{\partial\left(\partial_{y}\phi\right)}-\frac{\partial f}{\partial\phi}\nonumber \\
+ & =U\left(a^{2}(\partial_{x}^{2}\phi+\partial_{y}^{2}\phi)-\frac{1}{2}\frac{\partial g(\phi)}{\partial\phi}\right)-\mu\frac{\partial h(\phi)}{\partial\phi}.\label{eq:Kinetische-Gl}
+\end{align}
+
+
+\subsection{Stability of the homogenous and time independent solutions}
+
+We look for constant solutions of Eq.~\ref{eq:Kinetische-Gl} 
+\begin{align*}
+0= & \frac{U}{2}\frac{\partial g(\phi)}{\partial\phi}+\mu\frac{\partial h(\phi)}{\partial\phi}
+\end{align*}
+Calculation of the partial derivatives of the polynomial functions
+leads to 
+\begin{align*}
+\frac{\partial g(\phi)}{\partial\phi} & =2\phi(1-\phi)(1-2\phi)\\
+\frac{\partial h(\phi)}{\partial\phi} & =6\phi(1-\phi)
+\end{align*}
+ Inserting in the equation above yields
+\begin{align*}
+0 & =U\phi(1-\phi)(1-2\phi)+\mu6\phi(1-\phi)\\
+0 & =\phi(1-\phi)(1-2\phi)+\frac{6\mu}{U}\phi(1-\phi)\\
+0 & =\phi(1-\phi)\left(1-2\phi+\frac{6\mu}{U}\right)\\
+\Rightarrow & \phi_{1}=0;\phi_{2}=1;\phi_{3}=\frac{1}{2}+\frac{3\mu}{U};
+\end{align*}
+Stability of the solutions: 
+\begin{itemize}
+\item $\phi_{1}=0$ is a global (local) minimum if $\mu_{0}>0$ ($\mu_{0}<0$),
+i.e.~stabile (meta stabile)
+\begin{itemize}
+\item $\phi_{2}=1$ is local (global) minimum if $\mu_{0}>0$ ($\mu_{0}<0$),
+d.h.~meta stabile (stabile)
+\item $\phi_{3}=\frac{1}{2}+3\mu_{0}/U$ is for positive and negative $\mu$
+unstable ( $|\mu|<U/6$)
+\end{itemize}
+\end{itemize}
+
+\subsection{Phase-field profile function}
+
+We show that 
+\begin{align}
+\phi_{0}(x,t)= & \frac{1}{2}\left(1+\tanh\frac{(x-vt)}{2a}\right)\label{eq:1DPhasenfeldloesung}
+\end{align}
+is a heterogeneous solution of the phase field equation (\ref{eq:Kinetische-Gl})
+if $v=6M_{\phi}a\mu$. Note that from $\partial_{x}\left(\tanh(x)\right)=1-\tanh^{2}(x)$
+we can deduct the following property of this solution $\partial_{x}\phi_{0}=\phi_{0}\left(1-\phi_{0}\right)/a$. 
+
+Calculation of the derivatives:
+\begin{align}
+\frac{\partial\phi_{0}}{\partial x} & =\frac{1}{2}\frac{\partial}{\partial x}\left(1+\tanh\frac{(x-vt)}{2a}\right)=\frac{1}{4a}\left(1-\tanh^{2}\frac{(x-vt)}{2a}\right)\nonumber \\
+ & =\frac{1}{4a}\left(1+\tanh\frac{(x-vt)}{2a}\right)\left(1+1-1-\tanh\frac{(x-vt)}{2a}\right)\nonumber \\
+ & =\frac{1}{4a}\left(1+\tanh\frac{(x-vt)}{2a}\right)\left(2-\left(1+\tanh\frac{(x-vt)}{2a}\right)\right)\nonumber \\
+ & =\frac{1}{a}\frac{1}{2}\left(1+\tanh\frac{(x-vt)}{2a}\right)\left(1-\frac{1}{2}\left(1+\tanh\frac{(x-vt)}{2a}\right)\right)\nonumber \\
+ & =\frac{1}{a}\phi_{0}\left(1-\phi_{0}\right)\label{eq:Intro-Phasefield-stat-1d-profil-first-deriv}\\
+\frac{\partial^{2}\phi_{0}}{\partial x^{2}} & =\frac{1}{a}\frac{\partial}{\partial x}\left[\phi_{0}\left(1-\phi_{0}\right)\right]=\frac{1}{a}\frac{\partial}{\partial\phi_{0}}\left[\phi_{0}\left(1-\phi_{0}\right)\right]\frac{\partial\phi_{0}}{\partial x}\nonumber \\
+ & =\frac{1}{a^{2}}\phi_{0}\left(1-\phi_{0}\right)\left(1-2\phi_{0}\right),\label{eq:Intro-Phasefield-stat-1d-profil-sec-deriv}\\
+\frac{\partial\phi_{0}}{\partial t} & =-v\frac{\partial\phi_{0}}{\partial x}=-\frac{v}{a}\phi_{0}\left(1-\phi_{0}\right).
+\end{align}
+Where the second derivative has been calculated using the chain rule
+$\frac{\partial f(\varphi(x))}{\partial x}=\frac{\partial f}{\partial\varphi}\frac{\partial\varphi}{\partial x}$.
+Inserting in the nonlinear partial differential equation 
+\begin{align*}
+-\frac{v}{a}\phi_{0}\left(1-\phi_{0}\right) & =M_{\phi}U\underbrace{\left[a^{2}\frac{1}{a^{2}}\phi_{0}\left(1-\phi_{0}\right)\left(1-2\phi_{0}\right)-\phi(1-\phi)(1-2\phi)\right]}_{=0}\\
+ & \hspace*{1em}-M_{\phi}\mu6\phi_{0}\left(1-\phi_{0}\right)\\
+\Leftrightarrow\quad-v & =-6M_{\phi}a\mu.
+\end{align*}
+
+
+\subsection{Interface energy density}
+
+The interface energy density $\gamma$ in the phase-field model corresponds
+to the total free energy of the heterogeneous solution $\gamma=F[\phi_{0}(x,t)]$: 
+
+\begin{align*}
+F & =\frac{U}{2}\int_{-\infty}^{\infty}\left(a^{2}\left(\frac{\partial\phi_{0}}{\partial x}\right)^{2}+\phi_{0}^{2}(1-\phi_{0})^{2}\right)dx\\
+ & =\frac{U}{2}\int_{-\infty}^{\infty}\left(a^{2}\left(\frac{1}{a}\phi_{0}\left(1-\phi_{0}\right)\right)^{2}+\phi_{0}^{2}(1-\phi_{0})^{2}\right)dx\\
+\left[dx=\frac{a}{\phi_{0}(1-\phi_{0})}d\phi_{0}\right] & =aU\int_{0}^{1}\frac{\phi_{0}^{2}(1-\phi_{0})^{2}}{\phi_{0}(1-\phi_{0})}d\phi_{0}\\
+ & =aU\int_{0}^{1}\phi_{0}(1-\phi_{0})d\phi_{0}\\
+ & =aU\left(\frac{1}{2}\phi_{0}^{2}-\frac{1}{3}\phi_{0}^{3}\right)|_{0}^{1}=\frac{aU}{6}
+\end{align*}
+
+
+\subsection{Calibration of the field model}
+
+We calibrate the phase field model according to the 1D considerations
+above, i.e. we switch from the parameters $a,U,M_{\phi}$ to the parameters
+$\xi=2a$ for the phase-field width, $\Gamma=aU/6$ for interface
+energy density and $M=M_{\phi}a^{2}U$ for the kinetic coefficient
+$M[\mathrm{m}^{2}/\mathrm{s}]$. The calibrated phase-field model
+provide the following relation between the driving force $\mu$ and
+the resulting stationary interface velocity $v$
+\begin{align*}
+v & =\frac{M}{\Gamma}\mu_{0}=K\mu_{0}.
+\end{align*}
+With these parameters we obtain the following phase-field equation
+
+\begin{align*}
+\frac{1}{M}\partial_{t}\phi & =\underbrace{\partial_{x}^{2}\phi+\partial_{y}^{2}\phi}_{\mathrm{Laplace-Operator}}-\frac{2}{\xi^{2}}\partial_{\phi}g(\phi)-\frac{\mu}{3\Gamma\xi}\partial_{\phi}h(\phi).
+\end{align*}
+
+\end{document}

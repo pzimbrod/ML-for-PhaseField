@@ -1,0 +1,868 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass scrartcl
+\begin_preamble
+\newcommand{\velo}{\upsilon}
+\newcommand{\cheat}{C}
+
+
+\usepackage{lastpage}
+\usepackage{textgreek}
+\usepackage{fixltx2e}
+\usepackage{hyperref} %ermöglicht \href{}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{microtype}
+\usepackage[nomessages]{fp}
+\usepackage{pdfpages}
+
+%colors
+\definecolor{link_color}{HTML}{00406E} % dark blue
+\definecolor{cite_color}{HTML}{590000} % dark red
+\definecolor{dark-violet}{HTML}{9400d3} 
+\definecolor{forest-green}{HTML}{228b22} 
+\definecolor{dark-red}{HTML}{8b0000} 
+\definecolor{dark-blue}{HTML}{00008b} 
+\definecolor{dark-pink}{HTML}{ff1493}
+\definecolor{dark-salmon}{HTML}{e9967a}
+\definecolor{midnight-blue}{HTML}{191970}
+
+\hypersetup{hidelinks = true}
+\hypersetup{
+    colorlinks   = true, %Colours links instead of ugly boxes
+    urlcolor     = link_color, %Colour for external hyperlinks
+    linkcolor    = black, %Colour of internal links
+    frenchlinks  = true, %small caps
+    citecolor    = cite_color %Colour of citations
+}
+\end_preamble
+\options parskip=half-,svgnames
+\use_default_options false
+\maintain_unincluded_children false
+\language american
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Stichwortverzeichnis
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 1
+\math_indentation default
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Phase field modeling
+\end_layout
+
+\begin_layout Standard
+Given is the following energy functional 
+\begin_inset Formula 
+\begin{align*}
+F\left[\phi(x,y,t)\right] & =\int_{-\infty}^{\infty}\underbrace{\left(\frac{U}{2}\left[a^{2}\left((\partial_{x}\phi)^{2}+(\partial_{y}\phi)^{2}\right)+g(\phi)\right]+\mu_{0}h(\phi)\right)}_{f(\phi,\partial_{x}\phi,\partial_{y}\phi)}dx,
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $U$
+\end_inset
+
+ are constants of the dimension length and energy respectively.
+ 
+\begin_inset Formula $f(\phi,\partial_{x}\phi,\partial_{y}\phi)$
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+
+\size normal
+\begin_inset Formula $\partial_{x}$
+\end_inset
+
+ is an abbreviation for the partial derivative with respect to 
+\begin_inset Formula $x$
+\end_inset
+
+, i.e.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Formula $\partial_{x}\equiv\partial/\partial x$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ denotes the local free energy density and 
+\begin_inset Formula $\mu$
+\end_inset
+
+ the bulk free energy density difference between the two phases.
+ Depending on the sign of 
+\begin_inset Formula $\mu$
+\end_inset
+
+, this can either favor the growth of the one or the other phase.
+ 
+\begin_inset Formula $g(\phi)=\phi^{2}(1-\phi)^{2}$
+\end_inset
+
+ is the double well potential and 
+\begin_inset Formula $h(\phi)=\phi^{2}(3-2\phi)$
+\end_inset
+
+ is the interpolation function.
+ Please note, that for the reason of phase-stability we have to demand 
+\begin_inset Formula $|\mu|<U/6$
+\end_inset
+
+.
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+
+\lang german
+\begin_inset Formula $\left(\phi^{2}(1-\phi)^{2}\right)'=\left(\phi^{2}-2\phi^{3}+\phi^{4}\right)'=2\phi-6\phi^{2}+4\phi^{3}=2\phi\left(1-3\phi+2\phi^{2}\right)=2\phi(1-\phi)(1-2\phi)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Variational principles provide the phase field equation
+\begin_inset Formula 
+\begin{align}
+\frac{1}{M_{\phi}}\frac{\partial\phi}{\partial t} & =-\frac{\delta F}{\delta\phi}\nonumber \\
+ & =\partial_{x}\frac{\partial f}{\partial\left(\partial_{x}\phi\right)}+\partial_{y}\frac{\partial f}{\partial\left(\partial_{y}\phi\right)}-\frac{\partial f}{\partial\phi}\nonumber \\
+ & =U\left(a^{2}(\partial_{x}^{2}\phi+\partial_{y}^{2}\phi)-\frac{1}{2}\frac{\partial g(\phi)}{\partial\phi}\right)-\mu\frac{\partial h(\phi)}{\partial\phi}.\label{eq:Kinetische-Gl}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Stability of the homogenous and time independent solutions
+\end_layout
+
+\begin_layout Standard
+We look for constant solutions of Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Kinetische-Gl"
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{align*}
+0= & \frac{U}{2}\frac{\partial g(\phi)}{\partial\phi}+\mu\frac{\partial h(\phi)}{\partial\phi}
+\end{align*}
+
+\end_inset
+
+Calculation of the partial derivatives of the polynomial functions leads
+ to 
+\begin_inset Formula 
+\begin{align*}
+\frac{\partial g(\phi)}{\partial\phi} & =2\phi(1-\phi)(1-2\phi)\\
+\frac{\partial h(\phi)}{\partial\phi} & =6\phi(1-\phi)
+\end{align*}
+
+\end_inset
+
+ Inserting in the equation above yields
+\begin_inset Formula 
+\begin{align*}
+0 & =U\phi(1-\phi)(1-2\phi)+\mu6\phi(1-\phi)\\
+0 & =\phi(1-\phi)(1-2\phi)+\frac{6\mu}{U}\phi(1-\phi)\\
+0 & =\phi(1-\phi)\left(1-2\phi+\frac{6\mu}{U}\right)\\
+\Rightarrow & \phi_{1}=0;\phi_{2}=1;\phi_{3}=\frac{1}{2}+\frac{3\mu}{U};
+\end{align*}
+
+\end_inset
+
+Stability of the solutions: 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\phi_{1}=0$
+\end_inset
+
+ is a global (local) minimum if 
+\begin_inset Formula $\mu_{0}>0$
+\end_inset
+
+ (
+\begin_inset Formula $\mu_{0}<0$
+\end_inset
+
+), i.e.
+\begin_inset space ~
+\end_inset
+
+stabile (meta stabile)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\phi_{2}=1$
+\end_inset
+
+ is local (global) minimum if 
+\begin_inset Formula $\mu_{0}>0$
+\end_inset
+
+ (
+\begin_inset Formula $\mu_{0}<0$
+\end_inset
+
+), d.h.
+\begin_inset space ~
+\end_inset
+
+meta stabile (stabile)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\phi_{3}=\frac{1}{2}+3\mu_{0}/U$
+\end_inset
+
+ is for positive and negative 
+\begin_inset Formula $\mu$
+\end_inset
+
+ unstable ( 
+\begin_inset Formula $|\mu|<U/6$
+\end_inset
+
+)
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Phase-field profile function
+\end_layout
+
+\begin_layout Standard
+We show that 
+\begin_inset Formula 
+\begin{align}
+\phi_{0}(x,t)= & \frac{1}{2}\left(1+\tanh\frac{(x-vt)}{2a}\right)\label{eq:1DPhasenfeldloesung}
+\end{align}
+
+\end_inset
+
+is a heterogeneous solution of the phase field equation (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Kinetische-Gl"
+
+\end_inset
+
+) if 
+\begin_inset Formula $v=6M_{\phi}a\mu$
+\end_inset
+
+.
+ Note that from 
+\begin_inset Formula $\partial_{x}\left(\tanh(x)\right)=1-\tanh^{2}(x)$
+\end_inset
+
+ we can deduct the following property of this solution 
+\begin_inset Formula $\partial_{x}\phi_{0}=\phi_{0}\left(1-\phi_{0}\right)/a$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Calculation of the derivatives:
+\begin_inset Formula 
+\begin{align}
+\frac{\partial\phi_{0}}{\partial x} & =\frac{1}{2}\frac{\partial}{\partial x}\left(1+\tanh\frac{(x-vt)}{2a}\right)=\frac{1}{4a}\left(1-\tanh^{2}\frac{(x-vt)}{2a}\right)\nonumber \\
+ & =\frac{1}{4a}\left(1+\tanh\frac{(x-vt)}{2a}\right)\left(1+1-1-\tanh\frac{(x-vt)}{2a}\right)\nonumber \\
+ & =\frac{1}{4a}\left(1+\tanh\frac{(x-vt)}{2a}\right)\left(2-\left(1+\tanh\frac{(x-vt)}{2a}\right)\right)\nonumber \\
+ & =\frac{1}{a}\frac{1}{2}\left(1+\tanh\frac{(x-vt)}{2a}\right)\left(1-\frac{1}{2}\left(1+\tanh\frac{(x-vt)}{2a}\right)\right)\nonumber \\
+ & =\frac{1}{a}\phi_{0}\left(1-\phi_{0}\right)\label{eq:Intro-Phasefield-stat-1d-profil-first-deriv}\\
+\frac{\partial^{2}\phi_{0}}{\partial x^{2}} & =\frac{1}{a}\frac{\partial}{\partial x}\left[\phi_{0}\left(1-\phi_{0}\right)\right]=\frac{1}{a}\frac{\partial}{\partial\phi_{0}}\left[\phi_{0}\left(1-\phi_{0}\right)\right]\frac{\partial\phi_{0}}{\partial x}\nonumber \\
+ & =\frac{1}{a^{2}}\phi_{0}\left(1-\phi_{0}\right)\left(1-2\phi_{0}\right),\label{eq:Intro-Phasefield-stat-1d-profil-sec-deriv}\\
+\frac{\partial\phi_{0}}{\partial t} & =-v\frac{\partial\phi_{0}}{\partial x}=-\frac{v}{a}\phi_{0}\left(1-\phi_{0}\right).
+\end{align}
+
+\end_inset
+
+Where the second derivative has been calculated using the chain rule 
+\begin_inset Formula $\frac{\partial f(\varphi(x))}{\partial x}=\frac{\partial f}{\partial\varphi}\frac{\partial\varphi}{\partial x}$
+\end_inset
+
+.
+ Inserting in the nonlinear partial differential equation 
+\begin_inset Formula 
+\begin{align*}
+-\frac{v}{a}\phi_{0}\left(1-\phi_{0}\right) & =M_{\phi}U\underbrace{\left[a^{2}\frac{1}{a^{2}}\phi_{0}\left(1-\phi_{0}\right)\left(1-2\phi_{0}\right)-\phi(1-\phi)(1-2\phi)\right]}_{=0}\\
+ & \hspace*{1em}-M_{\phi}\mu6\phi_{0}\left(1-\phi_{0}\right)\\
+\Leftrightarrow\quad-v & =-6M_{\phi}a\mu.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Interface energy density
+\end_layout
+
+\begin_layout Standard
+The interface energy density 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ in the phase-field model corresponds to the total free energy of the heterogene
+ous solution 
+\begin_inset Formula $\gamma=F[\phi_{0}(x,t)]$
+\end_inset
+
+: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+F & =\frac{U}{2}\int_{-\infty}^{\infty}\left(a^{2}\left(\frac{\partial\phi_{0}}{\partial x}\right)^{2}+\phi_{0}^{2}(1-\phi_{0})^{2}\right)dx\\
+ & =\frac{U}{2}\int_{-\infty}^{\infty}\left(a^{2}\left(\frac{1}{a}\phi_{0}\left(1-\phi_{0}\right)\right)^{2}+\phi_{0}^{2}(1-\phi_{0})^{2}\right)dx\\
+\left[dx=\frac{a}{\phi_{0}(1-\phi_{0})}d\phi_{0}\right] & =aU\int_{0}^{1}\frac{\phi_{0}^{2}(1-\phi_{0})^{2}}{\phi_{0}(1-\phi_{0})}d\phi_{0}\\
+ & =aU\int_{0}^{1}\phi_{0}(1-\phi_{0})d\phi_{0}\\
+ & =aU\left(\frac{1}{2}\phi_{0}^{2}-\frac{1}{3}\phi_{0}^{3}\right)|_{0}^{1}=\frac{aU}{6}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Calibration of the field model
+\end_layout
+
+\begin_layout Standard
+We calibrate the phase field model according to the 1D considerations above,
+ i.e.
+ we switch from the parameters 
+\begin_inset Formula $a,U,M_{\phi}$
+\end_inset
+
+ to the parameters 
+\begin_inset Formula $\xi=2a$
+\end_inset
+
+ for the phase-field width, 
+\begin_inset Formula $\Gamma=aU/6$
+\end_inset
+
+ for interface energy density and 
+\begin_inset Formula $M=M_{\phi}a^{2}U$
+\end_inset
+
+ for the kinetic coefficient 
+\begin_inset Formula $M[\mathrm{m}^{2}/\mathrm{s}]$
+\end_inset
+
+.
+ The calibrated phase-field model provide the following relation between
+ the driving force 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and the resulting stationary interface velocity 
+\begin_inset Formula $v$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+v & =\frac{M}{\Gamma}\mu_{0}=K\mu_{0}.
+\end{align*}
+
+\end_inset
+
+With these parameters we obtain the following phase-field equation
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{M}\partial_{t}\phi & =\underbrace{\partial_{x}^{2}\phi+\partial_{y}^{2}\phi}_{\mathrm{Laplace-Operator}}-\frac{2}{\xi^{2}}\partial_{\phi}g(\phi)-\frac{\mu}{3\Gamma\xi}\partial_{\phi}h(\phi).
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Subsection
+Repräsentation des Phasenfeldes
+\end_layout
+
+\begin_layout Plain Layout
+Das Phasenfeld 
+\begin_inset Formula $\phi(x,y,t)$
+\end_inset
+
+ ist eine zeitabhängige Funktion, die auch von den Raumkoordinaten 
+\begin_inset Formula $x$
+\end_inset
+
+ und 
+\begin_inset Formula $y$
+\end_inset
+
+ abhängt.
+ Zur Repräsentation des Phasenfeldes in diesem Programm legen wir insgesamt
+ zwei 2D-Felder aus Gleitkommazahlen an.
+ Ein 2D Feld ist dabei ein Objekt aus 
+\begin_inset Formula $m_{grid}\times n_{grid}$
+\end_inset
+
+ Gleitkommazahlen.
+ In der 
+\begin_inset Formula $x-$
+\end_inset
+
+Richtung besteht das Feld aus 
+\begin_inset Formula $m_{grid}-$
+\end_inset
+
+Spalten und in der 
+\begin_inset Formula $y-$
+\end_inset
+
+Richtung aus 
+\begin_inset Formula $n_{grid}-$
+\end_inset
+
+Zeilen.
+ Die jeweils Erste und die jeweils Letzte der 
+\begin_inset Formula $m_{grid}-$
+\end_inset
+
+Spalten und der 
+\begin_inset Formula $n_{grid}-$
+\end_inset
+
+Zeilen gehören zum Rand des Feldes.
+ Hier müssen Randbedingungen gesetzt werden.
+ Die Phasenfeldwerte an allen anderen Punkten des numerischen Gitters werden
+ mit Hilfe der Phasenfeldgleichung, einer nichtlinearen partiellen Differentialg
+leichung, berechnet.
+ Das numerische Gitter sei der Einfachheit halber ein Quadratgitter, d.h.
+ der Abstand 
+\begin_inset Formula $\Delta x$
+\end_inset
+
+ zwischen Gitterpunkten sei in 
+\begin_inset Formula $x-$
+\end_inset
+
+Richtung genauso groß wie in 
+\begin_inset Formula $y-$
+\end_inset
+
+Richtung.
+\end_layout
+
+\begin_layout Plain Layout
+Als nächstes werden musterhaft Objekte für die beiden 2D-Felder angelegt.
+ Ein 2D Feld kann z.B.
+ mit Hilfe von zwei verschachtelten Zählschleifen erzeugt werden.
+ In diesem Fall gibt es eine äußere Zählschleife, die über die 
+\begin_inset Formula $m_{grid}-$
+\end_inset
+
+Spalten zählt.
+ Für jede dieser Spalte werden in einer inneren Zählschleife 
+\begin_inset Formula $n_{grid}-$
+\end_inset
+
+Gleitkommazahlen anlegt und mit dem Wert 
+\begin_inset Formula $0.0$
+\end_inset
+
+ initialisiert.
+ Nachdem die beiden 2D Felder angelegt sind, kann auf den Feldwert am Gitterpunk
+t 
+\begin_inset Formula $i,k$
+\end_inset
+
+ wie nachstehend gezeigt zugegriffen werden.
+\end_layout
+
+\begin_layout Subsection
+Numerische Diskretisierung der Phasenfeldgleichung
+\end_layout
+
+\begin_layout Plain Layout
+Die Phasenfeldgleichung ähnelt der partiellen Differenzialgleichung für
+ die thermische Diffusion, welche im Rahmen der Vorlesung Materialsimulation
+ I behandelt wurde.
+ Insbesondere die Zeitentwicklung und der Laplace-Operator sind formgleich.
+ Einen entscheidenden Unterschied machen die nichtlinearen Potenzialterme,
+ die bei der Phasenfeldgleichung noch hinzu kommen.
+\end_layout
+
+\begin_layout Plain Layout
+Die Phasenfeldgleichung soll gemäß dem in der Vorlesung Materialsimulation
+ I behandelten expliziten Finiten Differenzen Verfahrens numerisch diskretisiert
+ werden.
+ Die erste Zeitableitung wird gemäß dem expliziten Eulerverfahren wie folgt
+ diskretisiert
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align*}
+{\partial_{t}\phi}\quad & \rightarrow\quad\frac{\phi_{i,k}^{n+1}-\phi_{i,k}^{n}}{\Delta t}
+\end{align*}
+
+\end_inset
+
+Die zweiten Raumableitungen werden wie folgt diskretisiert
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align*}
+{\partial_{x}^{2}\phi}\quad & \rightarrow\quad\frac{\phi_{i+1,k}^{n}+\phi_{i-1,k}^{n}-2\phi_{i,k}^{n}}{\Delta x^{2}}\\
+{\partial_{y}^{2}\phi}\quad & \rightarrow\quad\frac{\phi_{i,k+1}^{n}+\phi_{i,k-1}^{n}-2\phi_{i,k}^{n}}{\Delta x^{2}}
+\end{align*}
+
+\end_inset
+
+Insgesamt erhalten wir die folgende diskretisierte Phasenfeldgleichung
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{M}\frac{\phi_{i,k}^{n+1}-\phi_{i,k}^{n}}{\Delta t} & =\mathrm{d}\phi_{i,k}^{n}=\frac{\phi_{i+1,k}^{n}+\phi_{i-1,k}^{n}+\phi_{i,k+1}^{n}+\phi_{i,k-1}^{n}-4\phi_{i,k}^{n}}{\Delta x^{2}}-\frac{2}{\xi^{2}}\partial_{\phi}g(\phi_{i,k}^{n})-\frac{\mu}{3\Gamma\xi}\partial_{\phi}h(\phi_{i,k}^{n})
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align*}
+\frac{1}{M}\frac{\phi_{i,k}^{n+1}-\phi_{i,k}^{n}}{\Delta t}= & \;\frac{\phi_{i+1,k}^{n}+\phi_{i-1,k}^{n}+\phi_{i,k+1}^{n}+\phi_{i,k-1}^{n}-4\phi_{i,k}^{n}}{\Delta x^{2}}\\
+ & -\frac{2}{\xi^{2}}\partial_{\phi}g(\phi_{i,k}^{n})-\frac{\mu_{0}}{3\Gamma\xi}\partial_{\phi}h(\phi_{i,k}^{n})
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Berechnung des Differenzphasenfeldes
+\end_layout
+
+\begin_layout Plain Layout
+Die rechte Seite der Phasenfeldgleichung entspricht dabei dem Differenzphasenfel
+d 
+\begin_inset Formula $\mathrm{d}\phi_{i,k}^{n}$
+\end_inset
+
+.
+ Mann beachte dass auch in diesem Fall die Zählschleifen über den 
+\begin_inset Formula $x-$
+\end_inset
+
+Index 
+\begin_inset Formula $i$
+\end_inset
+
+ und den 
+\begin_inset Formula $y-$
+\end_inset
+
+Index 
+\begin_inset Formula $k$
+\end_inset
+
+ nur über das Innere des 2D Feldes, nicht aber über den Rand des Gebietes,
+ gehen.
+ Die Randwerte werden über separate Randbedingungen festgelegt.
+\end_layout
+
+\begin_layout Subsection
+Zeitentwicklung des Phasenfeldes 
+\end_layout
+
+\begin_layout Plain Layout
+In Bezug auf die Zeitabhängigkeit des Phasenfeldes beschränken wir uns im
+ Programm aus Gründen der Effizienz nur auf ein Phasenfeld 
+\begin_inset Formula $\phi_{i,k}^{n}$
+\end_inset
+
+ zum aktuellen Zeitschritt 
+\begin_inset Formula $n$
+\end_inset
+
+, und das aktuelle Differenzphasenfeld 
+\begin_inset Formula $\mathrm{d}\phi_{i,k}^{n}$
+\end_inset
+
+, mit welchem das Phasenfeld 
+\begin_inset Formula $\phi_{i,k}^{n+1}$
+\end_inset
+
+ zum nächsten Zeitschritt über 
+\begin_inset Formula 
+\begin{align*}
+\phi_{i,k}^{n+1} & =\phi_{i,k}^{n}+M_{\phi}\cdot\Delta t\;\mathrm{d}\phi_{i,k}^{n}
+\end{align*}
+
+\end_inset
+
+berechnet werden kann.
+ 
+\begin_inset Formula $\Delta t$
+\end_inset
+
+ bezeichnet dabei die Zeit zwischen zwei Zeitschritten.
+ Das Phasenfeld 
+\begin_inset Formula $\phi_{i,k}^{n}$
+\end_inset
+
+ sowie auch das Differenzphasenfeld 
+\begin_inset Formula $\mathrm{d}\phi_{i,k}^{n}$
+\end_inset
+
+ werden gemäß der Phasenfeldgleichung von einem Zeitschritt zum nächsten
+ immer wieder überschrieben.
+\end_layout
+
+\begin_layout Plain Layout
+Mann beachte dass die Zählschleifen über den 
+\begin_inset Formula $x-$
+\end_inset
+
+Index 
+\begin_inset Formula $i$
+\end_inset
+
+ und den 
+\begin_inset Formula $y-$
+\end_inset
+
+Index 
+\begin_inset Formula $k$
+\end_inset
+
+ nur über das Innere des 2D Feldes, nicht aber über den Rand des Gebietes
+ gehen.
+ Die Randwerte werden über Randbedingungen festgelegt.
+\end_layout
+
+\begin_layout Subsection
+Randbedingungen
+\end_layout
+
+\begin_layout Plain Layout
+Für die vier verschiedenen Randkanten unseres 2D Feldes definieren wir jeweils
+ von Neumann Randbedingungen für das Phasenfeld.
+ Dabei soll der Phasenfeldfluss durch den Rand jeweils verschwinden, was
+ im Falle der Temperaturdiffusion einer thermisch isolierenden Randbedingungen
+ entspricht.
+\end_layout
+
+\begin_layout Subsection
+Initialisierung des Phasenfeldes
+\end_layout
+
+\begin_layout Plain Layout
+Zum Zeitpunkt 
+\begin_inset Formula $t=0$
+\end_inset
+
+ muss dass Phasenfeld im Sinne eines Anfangswertes im gesamten Gebiet vorgegeben
+ werden.
+ Bei 
+\begin_inset Formula $t=0$
+\end_inset
+
+ soll sich ein viertel eines kreisförmigen Keims mit Radius 
+\begin_inset Formula $R_{0}=20.0$
+\end_inset
+
+ im System befinden.
+ Im Inneren des Keims soll das Phasenfeld den Wert 
+\begin_inset Formula $\phi=1$
+\end_inset
+
+ haben, und außerhalb den Wert 
+\begin_inset Formula $\phi=0$
+\end_inset
+
+.
+ Die Grenzfläche zwischen Keim und umgebender Matrix soll gemäß dem Gleichgewich
+tsprofil des Phasenfeldmodells 
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\begin{align*}
+\phi_{0}(r,t) & =\frac{1}{2}\left(1-\mathrm{tanh}\frac{r-R_{0}}{\xi}\right)
+\end{align*}
+
+\end_inset
+
+durch einen glatten Übergang der Breite 
+\begin_inset Formula $\xi=2a$
+\end_inset
+
+ repräsentiert sein.
+ Wir definieren zunächst eine 2D Funktion, die mit Hilfe der mathematischen
+ Funktion 
+\begin_inset Formula $\mathrm{tanh}$
+\end_inset
+
+ entsprechende Werte liefert.
+\end_layout
+
+\begin_layout Subsection
+Phasenfeldsimulation
+\end_layout
+
+\begin_layout Plain Layout
+Zur Überwachung der numerischen Lösung berechnen wir zusätzlich das aktuelle
+ Keimvolumen aus dem Phasenfeldintegral.
+ Die zeitliche Entwicklung des Keimvolumens kann anschließend mit der theoretisc
+hen Erwartung verglichen werden.
+\end_layout
+
+\begin_layout Plain Layout
+Neben der Festlegung der Zahl der Zeitschritte für den Aufruf der Hauptzeitschle
+ife, legen wir leere Listen für die gemessenen Radien und Zeiten an.
+ Der erste Eintrag in den Listen ist der gemessene Ausgangsradius und die
+ Zeit 
+\begin_inset Formula $t=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Plain Layout
+In der Hauptzeitschleife müssen wir in jedem Zeitschritt das Differenzphasenfeld
+ mit Hilfe der Phasenfeldgleichung dem aktuellen Phasenfeld und den aktuellen
+ Randwerten berechnen.
+ Anschließend wird das Phasenfeld zum neuen Zeitschritt mit Hilfe des Differenzp
+hasenfeldes berechnet und überschrieben.
+ Dann werden die Randbedingungen zum aktuellen Zeitschritt auswerten und
+ aktualisiert.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
