@@ -90,3 +90,7 @@ target/
 
 # Output data
 *.dat
+
+# No intermediate training models
+models/PINN/model/scaled/*
+models/PINN/model/unscaled/*

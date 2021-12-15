@@ -1,0 +1,2 @@
+model_checkpoint_path: "scaled-last.ckpt-36140"
+all_model_checkpoint_paths: "scaled-last.ckpt-36140"
