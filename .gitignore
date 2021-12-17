@@ -94,3 +94,4 @@ target/
 # No intermediate training models
 models/PINN/model/scaled/*
 models/PINN/model/unscaled/*
+models/PINN/model/scaled-custom/*
