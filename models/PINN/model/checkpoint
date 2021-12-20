@@ -1,2 +1,2 @@
-model_checkpoint_path: "scaled-custom-last.ckpt-32850"
-all_model_checkpoint_paths: "scaled-custom-last.ckpt-32850"
+model_checkpoint_path: "sliced-last.ckpt-24483"
+all_model_checkpoint_paths: "sliced-last.ckpt-24483"
