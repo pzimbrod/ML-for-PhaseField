@@ -96,3 +96,4 @@ models/PINN/model/scaled/*
 models/PINN/model/unscaled/*
 models/PINN/model/scaled-custom/*
 models/PINN/model/sliced/*
+models/Julia/train.bson
