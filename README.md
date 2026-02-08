@@ -1,3 +1,6 @@
+[![DOI](https://zenodo.org/badge/403902536.svg)](https://doi.org/10.5281/zenodo.18525750)
+
+
 Physics-informed Machine Learning for the Phase Field Method
 ==============================
 
