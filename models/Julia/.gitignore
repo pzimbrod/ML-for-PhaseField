@@ -1,0 +1,2 @@
+# Don't push large data files to the repo
+*.bson
